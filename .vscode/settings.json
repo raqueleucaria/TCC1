@@ -1,0 +1,11 @@
+{
+    "cSpell.language": "en,pt,pt-BR",
+	"emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": "\\.tex$",
+                "cmd": "cd ${workspaceFolder} && make pdf"
+            }
+        ]
+    }
+}
