@@ -6,10 +6,14 @@ RUN apt-get update && apt-get install -y \
     texlive-lang-portuguese \
     texlive-latex-extra \
     texlive-fonts-recommended \
-    make \
     texlive-font-utils \
     texlive-extra-utils \
+    texlive-science \
+    texlive-bibtex-extra \
+    texlive-pictures \
+    biber \
     latexmk \
+    make \
     python3-pygments \
     && rm -rf /var/lib/apt/lists/*
 

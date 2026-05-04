@@ -1,83 +1,317 @@
 \chapter{Introdução}
 \label{1-introducao}
 
-% Este capítulo deve apresentar uma visão geral do trabalho
-% Comece com uma contextualização ampla e vá afunilando até seu tema específico
+A autora desse trabalho concentra seus esforços no domínio da saúde, mais especificamente
+em arboviroses, no caso, a dengue. Além disso, faz uso da área de Engenharia de Software
+para atendimento de seus propósitos, centrando-se no Paradigma de Sistemas Multiagentes.
+
+No domínio da saúde, têm-se vários desafios, incluindo a compreensão sobre arboviroses:
+como se propagam? quais são os principais comportamentos dos vírus transmissores?
+quais os ambientes mais propícios para a reprodução desses vírus transmissores?
+dentre outros vieses de pesquisa.
+
+A Engenharia de Software pode colaborar nessas pesquisas, promovendo insumos que ajudem
+a responder tais questionamentos, e até mesmo mitigando problemas que atingem diretamente
+a sociedade, tais como as epidemias de dengue já registradas no Brasil \cite{fepese2024}.
+A mitigação pode ser viável, por exemplo, através de simulações que representemos
+comportamentos dos vírus transmissores, antecipando situações de risco, bem como conferindo
+embasamento para as tomadas de decisões e ações por parte das autoridades competentes
+(i.e. Governo, Prefeituras, Municípios, e outros). Dentre essas ações, podem ser
+intensificadas as campanhas de vacinação; uso de fumacê em regiões mais comprometidas,
+e até capacitação e treinamento de equipes de emergência em hospitais localizados nessas regiões.
+
+Para tanto, faz-se necessário um paradigma de modelagem e programação capaz de representar
+mais proximamente as nuances desse domínio. O Paradigma de Sistemas Multiagentes é o modelo
+conceitual sugerido nesse trabalho, por conter abstrações mais aderentes ao propósito supracitado,
+com base em pesquisas prévias realizadas pela autora \cite{costa2025}.
+Dentre essas abstrações, têm-se os agentes de software, que são entidades autônomas,
+proativas, reativas e sensíveis ao contexto \cite{wooldridge2009}.
+
+Este capítulo apresenta o cenário no qual este trabalho está inserido. Inicia-se
+pela \hyperref[1-contextualizacao]{Contextualização} do problema, seguida pela exposição
+dos \hyperref[1-questao]{Questionamentos} que a pesquisa busca responder, e da
+\hyperref[1-justificativa]{Justificativa} para a sua realização. Na sequência, são
+detalhados os  \hyperref[1-objetivos]{Objetivos} a serem alcançados e a
+\hyperref[1-metodologia]{Metodologia} que será adotada, encerrando com a descrição da 
+\hyperref[1-organizacao]{Organização} desta monografia.
 
 \section{Contextualização}
 \label{1-contextualizacao}
-% Apresente o contexto geral do problema
-% Descreva a área de pesquisa e sua relevância atual
 
-% Exemplo de como usar uma citação:
-\begin{citacao}
-A engenharia de software tem evoluído significativamente nos últimos anos \cite{inmetro2003}.
-\end{citacao}
+% 1. Apresentação da Doença e do Vetor
+
+A dengue é uma infecção viral, pertencente ao grupo dos arbovírus, transmitida pela picada 
+do mosquito infectado \textit{Aedes aegypti}, mais comum em regiões de clima tropical e subtropical como o Brasil \cite{ministerio2026}.
+Em 2025, o país registrou 1.655.644 casos suspeitos, 1.793 óbitos e taxa de incidência de
+775,7 por 100.000 habitantes, o maior volume absoluto de casos nas Américas \cite{opas2026}.
+
+% 2. O Cenário Epidemiológico Crítico no Brasil - gravidade
+Além do volume de casos, o Brasil enfrenta a circulação simultânea dos quatro
+sorotipos do vírus (DENV-1, DENV-2, DENV-3 e DENV-4). Isso aumenta o risco de formas graves, pois
+uma segunda infecção por sorotipo diferente está associada a quadros mais severos. A
+proliferação do vetor é favorecida por condições como urbanização sem planejamento,
+saneamento deficiente e armazenamento inadequado de água \cite{who2025}.
+
+% 3. Controle Vetorial
+O controle do \textit{Aedes aegypti} é a principal estratégia de prevenção, mas exige ação
+antecipada. Quando a transmissão já está estabelecida em uma área com alta densidade
+de mosquitos, medidas reativas têm pouco efeito: a queda nos casos tende a ocorrer pela
+imunidade de grupo, não pelas intervenções aplicadas \cite{ministerio2026}.
+Isso reforça a necessidade de ferramentas capazes de apoiar decisões antes da instauração
+de uma epidemia, conforme incentivado pela Organização Pan-Americana da Saúde
+\cite{opas2026}.
+
+% 4. A Solução Tecnológica: A Essência e Importância dos Sistemas Multiagentes
+Nesse contexto, a simulação por Sistemas Multiagentes (SMA) é uma abordagem
+promissora. Nela, entidades como mosquitos e humanos são representados como agentes
+autônomos que interagem entre si e com o ambiente, que incorpora fatores como
+criadouros, temperatura, precipitação e umidade em camadas geoespaciais. Isso permite
+reproduzir como comportamentos individuais e locais geram padrões complexos de disseminação
+em escala maior. O ambiente simulado funciona como um laboratório virtual
+para análises do tipo what-if, permitindo avaliar o impacto de diferentes cenários antes
+de aplicá-los na prática \cite{pascoe2023}.
+
+
+% 5.Desafio da Integração de Dados Reais
+
+Para que essas simulações sejam realistas, os agentes precisam ser alimentados com
+dados reais. O Brasil dispõe de bases abertas para isso: o Sistema de Informação de Agravos
+de Notificação (SINAN), o Levantamento Rápido do Índice de Infestação por Aedes
+aegypti (LIRAa) e o Sistema do Programa Nacional de Controle da Dengue (SISPNCD).
+O problema é que essas fontes operam de forma isolada e são historicamente subutilizadas
+na gestão \cite{rizzi2016}. Além da dispersão, falta padronização: não há um modelo
+de dados consolidado que integre essas bases com variáveis climáticas e georreferenciadas
+de forma que possam alimentar diretamente uma simulação \cite{moreira2025}.
+
+% 6. Solução alinhada
+A linha de pesquisa do SIGDENGUE, desenvolvida pela UNIOESTE em parceria
+com a Prefeitura de Cascavel/PR, confere uma linha de pesquisa mais próxima ao que este trabalho
+propõe \cite{rizzi2011, rizzi2016}. Ambos os artigos descrevem um sistema
+com três módulos (integração de dados, georreferenciamento e simulação com agentes),
+e representam a referência mais alinhada ao escopo desta pesquisa. No entanto, não detalham
+como os dados foram estruturados e modelados, nem apresentam diagramas e
+especificações formais. Isso dificulta tanto a reprodução; quanto a extensão do trabalho.
+
+% 7. O Escopo do Trabalho e Visão de Futuro (Fechamento)
+
+Este trabalho retoma esse ponto, buscando contribuir no que ficou em
+aberto. Propõe-se, portanto, um sistema de informação georreferenciado com simulação de
+agentes de software, no contexto da dengue, que: (i) acorda uma visão preliminar de um modelo de dados
+para integrar as bases abertas brasileiras, tendo como referência a abordagem de normalização 
+proposta por \cite{moreira2025}; (ii) especifica o comportamento dos agentes com
+diagramas e modelos; e (iii) estabelece critérios de validação espacial e temporal, tendo
+como referência metodológica o trabalho de \cite{li2016}. O cenário geográfico de
+aplicação está em definição, considerando um levantamento da disponibilidade e da qualidade dos
+dados abertos existentes.
+
+A arquitetura do simulador será concebida de forma modular, decisão que, embora
+não implique entregas adicionais no escopo deste trabalho, visa facilitar evoluções
+incrementais em pesquisas futuras, com vistas à disponibilização do sistema como software
+livre e de código aberto, fomentando a pesquisa na área de sistemas multiagentes, e
+oferecendo à sociedade uma ferramenta de apoio ao enfrentamento da dengue.
 
 \section{Questionamentos}
 \label{1-questao}
-% Liste aqui as questões que seu trabalho pretende responder
-% Formule perguntas claras e objetivas
-% As questões devem estar alinhadas com seus objetivos
+
+O controle da dengue depende de uma análise combinada de variáveis ambientais a partir de fontes
+heterogêneas e não integradas \cite{rizzi2016}. Estruturar esses dados de forma que
+possam alimentar uma simulação, e analisar se essa simulação reproduz padrões reais,
+são desafios que a literatura relacionada enfrentou parcialmente (\hyperref[ap-pesquisa-bibliografica]{Apêndice A}).
+Diante do exposto, este trabalho busca responder às seguintes questões:
+
+\begin{enumerate}
+    \item \textbf{Questão 1:} Como modelar dados abertos governamentais (epidemiológicos,
+climáticos e geográficos) de forma normalizada e integrada, servindo como
+parâmetros diretos de entrada em uma simulação computacional?
+    
+    \item \textbf{Questão 2:} Como representar as regras biológicas de proliferação do \textit{Aedes aegypti}
+e suas interações com variáveis climáticas em especificações orientadas ao Paradigma de Sistemas Multiagentes Comportamentais?
+    
+    \item \textbf{Questão 3:} De que forma os padrões gerados pela simulação podem ser comparados
+com séries históricas reais para verificar se o modelo reproduz a dinâmica observada
+da dengue?
+\end{enumerate}
 
 \section{Justificativa}
 \label{1-justificativa}
-% Explique por que seu trabalho é importante
-% Apresente argumentos que justifiquem a pesquisa
 
-\begin{itemize}
-\item Primeiro argumento importante sobre a relevância do trabalho
-\item Segundo argumento importante sobre o impacto esperado
-\item Demais pontos que justificam a pesquisa
-\end{itemize}
+Os Sistemas Multiagentes são adequados a problemas que envolvem múltiplas entidades
+autônomas interagindo em um ambiente compartilhado. Cada agente percebe o
+entorno e age com base em suas próprias regras \cite{wooldridge2009}, o que é diretamente
+compatível com a dinâmica da dengue: mosquitos se deslocam, humanos circulam,
+criadouros se formam e condições climáticas variam de forma local e contínua.
+
+O modelo clássico como o SIR (Susceptible-Infected-Recovered) trata
+a população como um conjunto uniforme, descrito por equações que calculam médias. Essa
+abstração não é suficiente para representar o deslocamento individual dos mosquitos, as
+variações climáticas locais ou as diferenças de comportamento entre pessoas \cite{bosch2019}.
+A modelagem baseada em agentes (MBA), por sua vez, representa cada entidade de forma explícita,
+permitindo que padrões emergentes como surtos e focos apareçam como
+resultado das interações. % TODO: Add referencia a esta ultima frase
+
+Existem várias propostas de modelagem de agentes de software, bem como suportes tecnológicos
+que se orientam por essas modelagens conceituais visando a implementação dos agentes.
+Dentre as mais conhecidas, destacam-se as acordadas em \cite{alhadef2024}. Nesse caso, o autor
+descreve várias ferramentas de software para construção de Sistemas Multiagentes, em uma
+Revisão Sistemática da Literatura. O autor destaca ainda a popularidade de uma ferramenta
+em particular, chamada JADE (\textit{Java Agent Development Framework}) \cite[p.~20]{alhadef2024}.
+Por fim, cabe ressaltar as vantagens apontadas pelo autor, ao comparar o JADE e outras
+ferramentas similares, com destaque para: Facilidade de uso alta, "Interface gráfica intuitiva,
+documentação extensa e comunidade ativa"; desempenho médio a alto, "Adequado para sistemas 
+multiagentes complexos, mas pode ter impacto no desempenho em ambientes com restrições de 
+recursos", e escalabilidade alta, "Suporta a construção de sistemas multiagentes em grande 
+escala." \cite[p.~36, Tabela~4]{alhadef2024}.
+
+Diante do exposto, a escolha do JADE como plataforma de desenvolvimento apoia-se,
+não apenas nas colocações do autor anteriormente apresentadas, mas complementarmente
+em razões técnicas e de continuidade. O \textit{framework} implementa os padrões da FIPA para
+comunicação entre agentes. Além disso, é distribuído como \textit{software} livre, e
+tem ampla documentação acadêmica \cite{bellifemine2007}.
+O próprio SIGDENGUE utilizou o JADE em sua simulação \cite{rizzi2011}, o que
+reforça a coerência da escolha para este domínio.
+
+Um levantamento comparativo da literatura, detalhado no \hyperref[ap-pesquisa-bibliografica]{Apêndice A}, mostra que
+os trabalhos identificados procuram mitigar partes pertinentes dos desafios desse tema.
+Entretanto, ainda restam pontos de atuação relevantes, e que carecem de soluções e esforços.
+Justamente em alguns desses pontos que a autora do presente trabalho pretende contribuir,
+com destaque para seis dimensões: modelagem orientada a agentes de software comportamentais;
+integração com dados reais; e foco no contexto epidemiológico brasileiro.
+
+Conforme colocado anteriormente, ambos os artigos do SIGDENGUE são próximos desta pesquisa
+\cite{rizzi2011, rizzi2016}. Todavia, deixam lacunas. Em \citeonline{rizzi2011},
+reconhecem que a modelagem dos agentes ficou superficial e não registram diagramas de estado
+nem especificações mais claras, com modelagem em notações reconhecidas da área
+(ex. UML -  \textit{Unified Modeling Language}) (REF). % Adicionar referência
+Isso ajudaria a compreender as interações dos agentes, sendo possível implementá-las mais facilmente.
+Em \citeonline{rizzi2016}, avançam no sistema de informação, mas não detalham como os dados foram estruturados.
+Adicionalmente, as decisões de modelagem ainda assim ficaram implícitas.
+Novamente, dificultando a reprodução e/ou extensão da pesquisa.
+
+Nesse contexto, e visando contribuir com essa lacuna de dados, que \citeonline{moreira2025} contribuem de forma direta.
+Os autores propõem um processo de normalização das bases do SINAN e do
+InfoDengue para cidades brasileiras, e disponibilizam os \textit{datasets} resultantes publicamente.
+Analisando séries históricas de anos, identificam um defasamento de aproximadamente doze
+semanas entre pico de temperatura e pico de casos, dado que orienta a parametrização
+dos agentes mosquitos. Ressalta-se que o efeito do clima na incidência não é imediato, mas aparece meses
+depois, e o modelo precisa refletir esse ciclo.
+
+Para análise, \citeonline{li2016} oferecem uma perspectiva complementar. Enquanto
+\citeonline{moreira2025} trabalham com séries longas, \citeonline{li2016} analisam
+um surto real na China com resolução diária, e mostram que, no curto prazo, o clima
+perde importância. O clima orienta a parametrização da dinâmica de
+longo prazo dos agentes, mas não é o fator decisivo durante o surto em si.
+Os autores acordam índices que podem ser usados para, por exemplo: (i) inferir que variáveis
+meteorológicas apresentam correlação fraca ou não significativa em janelas curtas de tempo,
+e ainda (ii) medir a autocorrelação espacial dos casos gerados pela simulação,
+desde que dados equivalentes estejam disponíveis para o cenário escolhido.
+
+
+O sistema proposto neste trabalho baseia-se na estrutura de três módulos do SIGDENGUE. % Ajustar
+Outros trabalhos levantados na literatura, em especial \citeonline{wickramasooriya2024}
+e \citeonline{pascoe2023}, oferecem abstrações e padrões de modelagem mais ricos,
+como diagramas de estados, ciclo de vida detalhado do vetor e integração de variáveis
+climáticas no comportamento dos agentes. Sendo assim, acredita-se que as contribuições
+expostas nessas literaturas, combinadas no presente trabalho, possam conferir embasamento
+e respostas aos questionamentos estabelecidos.
 
 % Exemplo de citação que reforce seus argumentos:
-\begin{citacao}
-O desenvolvimento contínuo de novas tecnologias demanda constante atualização das práticas de engenharia \cite{Sommerville2007}.
-\end{citacao}
+%\begin{citacao}
+%O desenvolvimento contínuo de novas tecnologias demanda constante atualização das práticas de engenharia \cite{Sommerville2007}.
+%\end{citacao}
 
 \section{Objetivos}
 \label{1-objetivos}
-% Apresente uma breve introdução aos objetivos do trabalho
+
+Dada a complexidade do trabalho, o mesmo possui um objetivo geral, sendo esse modularizado em objetivos específicos de menor granularidade.
 
 \subsection{Objetivo Geral}
 \label{1-objetivos-gerais}
-% Descreva o objetivo principal do trabalho
-% Use verbos no infinitivo (desenvolver, analisar, propor, etc.)
+
+O objetivo geral deste trabalho é a obtenção de um sistema orientado a agentes de software comportamentais,
+modularizado e integrado aos dados abertos governamentais, e que seja capaz de simular as regras biológicas
+de proliferação do transmissor, considerando variáveis climáticas e outras informações baseadas em
+séries históricas reais de arboviroses. 
+
+Como fechamento de escopo, a arbovirose foco será a Dengue. Portanto, o transmissor a ser modelado é o Aedes
+aegypti. Além disso, será estabelecido um conjunto de dados abertos, bem como quais regras biológicas
+serão consideradas na modelagem do MVP (\textit{Minimum Viable Product}) da solução proposta.
+
+Pretende-se que o sistema integre dados abertos de saúde pública, clima e georreferenciamento,
+com três contribuições mais relevantes, além do próprio simulador: um modelo de dados preliminar,
+documentado para integração das bases brasileiras; a especificação do comportamento dos agentes em
+diagramas de notação reconhecida na área, e insumos de análise, espacial e temporal, baseados em evidências
+empíricas e explorando séries históricas de dados reais. 
+
+O cenário geográfico de aplicação está sendo definido a partir do levantamento da disponibilidade dos
+dados abertos. O código será disponibilizado como \textit{software} livre para permitir extensão futura por parte da
+comunidade, sendo estabelecidas as políticas de contribuição e compartilhamento.
+
 
 \subsection{Objetivos Específicos}
 \label{1-objetivos-especificos}
-% Liste os objetivos específicos que contribuirão para alcançar o objetivo geral
+
+Para viabilizar o objetivo geral, o escopo foi estruturado em objetivos de três
+naturezas:
 
 \begin{itemize}
-\item Objetivos Específicos de viés Teórico:
-\begin{enumerate}
-\item Primeiro objetivo teórico (ex: analisar, investigar...)
-\item Segundo objetivo teórico (ex: comparar, avaliar...)
-\item Demais objetivos teóricos
-\end{enumerate}
-\item Objetivos Específicos de viés Prático:
-\begin{itemize}
-\item Objetivo prático (ex: implementar, desenvolver...)
-\end{itemize}
-\item Objetivos Específicos de viés Documental:
-\begin{itemize}
-\item Objetivo documental (ex: documentar, registrar...)
-\end{itemize}
+    \item \textbf{Objetivos Específicos de viés Teórico:}
+    \begin{enumerate}
+        \item \textbf{Investigação} dos conceitos centrais do trabalho: saúde pública e dados abertos, 
+arbovirose (especificamente, a dengue) e ciclo do \textit{Aedes aegypti}, Sistemas Multiagentes e simulação;
+        \item \textbf{Estudo} das bases de dados abertos (epidemiológicos, climáticos e
+geográficos) disponíveis no contexto brasileiro, mapeando suas estruturas, limitações
+e possibilidades de integração, como subsídio para a escolha do cenário
+geográfico de aplicação, e
+        \item \textbf{Identificação}, a partir da revisão da literatura, das variáveis biológicas e ambientais
+que atuam na proliferação do \textit{Aedes aegypti}, bem como dos critérios de avaliação utilizados nas
+análises de modelos epidemiológicos.
+    \end{enumerate}
+
+    \item \textbf{Objetivos Específicos de viés Prático:}
+    \begin{itemize}
+        \item \textbf{Modelagem} da camada de dados do sistema, procurando manter as relações normalizadas, e facilitando a integração das bases epidemiológicas, climáticas e geoespaciais,
+tornando-as insumos diretos da simulação;
+        \item \textbf{Especificação} dos comportamentos dos agentes, representando mosquitos, humanos e criadouros, em notação UML;
+        \item \textbf{Implementação} de provas de conceito, em atendimento ao sistema como um todo e de forma modularizada, com atenção aos módulos: integração de dados, georreferenciamento e simulação com agentes, e
+        \item \textbf{Análise} dos resultados de forma quantitativa e qualitativa, incluindo critérios de avaliação espacial (ex. autocorrelação geográfica) e temporal (ex. aderência a ciclos históricos).
+    \end{itemize}
+
+    \item \textbf{Objetivos Específicos de viés Documental:}
+    \begin{itemize}
+        \item \textbf{Documentação} geral do trabalho, no intuito de garantir que os achados sejam consultados pela comunidade, incluindo os resultados de análise do simulador com base em séries históricas reais.
+    \end{itemize}
 \end{itemize}
 
 \section{Metodologia}
 \label{1-metodologia}
-% Apresente um resumo da metodologia utilizada
-% Indique o tipo de pesquisa e principais métodos
-% Detalhe completo será feito no capítulo de metodologia
+
+Esta pesquisa é de natureza aplicada e caráter exploratório, com abordagem híbrida
+(qualitativa e quantitativa). Os procedimentos técnicos dividem-se em três frentes
+complementares: Pesquisa, Desenvolvimento e Análise.
+
+A \textbf{pesquisa bibliográfica} cobre os objetivos teóricos: fundamenta os conceitos
+e revisa os modelos de simulação existentes para dengue. A \textbf{pesquisa-ação} % TODO: add ref
+orienta o desenvolvimento e os testes do sistema, cobrindo os objetivos práticos,
+e orientando-se por provas de conceito. As atividades serão organizadas em entregas
+iterativas com rastreabilidade do progresso, onde pretende-se usar a combinação 
+do Scrum Solo (??) e Kanban (??). % TODO: add ref
+
+Já a análise, orienta-se pelo protocolo de pesquisa-ação, em conjunto com avaliações quanti e qualitativa.
+Em termos de análise quantitativa, pretende-se perceber sobre a aderência da simulação às séries históricas
+reais, comparando dados numéricos da versão in silico com dados reais. Além disso, serão aferidas métricas
+de desempenho computacional da solução simulada. Em termos de análise qualitativa, será entregue uma
+Matriz de SWOT (??), contendo: Forças, Fraquezas, Oportunidades e Ameaças da solução. % TODO: add ref
+Os detalhes completos são apresentados no Capítulo \hyperref[1-metodologia]{4 - Metodologia}. 
 
 \section{Organização da Monografia}
 \label{1-organizacao}
-% Apresente a estrutura do trabalho, descrevendo brevemente cada capítulo
+
+Esta monografia está organizada em seis capítulos. Além desta introdução, os demais estão estruturados da seguinte forma:
 
 \begin{itemize}
-\item Capítulo \ref{cap-referencial-teorico} \nameref{cap-referencial-teorico}: Fundamentação teórica do trabalho
-\item Capítulo \ref{cap-suporte-tecnologico} \nameref{cap-suporte-tecnologico}: Descrição das tecnologias utilizadas
-% Continue listando os demais capítulos
+    \item \textbf{Capítulo \hyperref[cap-referencial-teorico]{2 - Referencial Teórico}:} Conceitos fundamentais que embasam a pesquisa;
+    \item \textbf{Capítulo \hyperref[cap-suporte-tecnologico]{3 - Suporte Tecnológico}:} Ferramentas, linguagens, frameworks e bibliotecas utilizados na construção da pesquisa;
+    \item \textbf{Capítulo \hyperref[cap-metodologia]{4 - Metodologia}:} Classificação da pesquisa e descrição dos métodos e procedimentos adotados, além de cronogramas e fluxos de atividades/subprocessos;
+    \item \textbf{Capítulo \hyperref[cap-proposta]{5 - Proposta}:} Detalhamento da proposta como um todo, com origem da ideia; provas de conceito iniciais; modelagem dos requisitos e da arquitetura, bem como uma visão preliminar do simulador, e % <<aqui, pode ser um protótipo, alinhado às diretrizes de Nielsen - só sugestão (vai pensando)>>
+    \item \textbf{Capítulo \hyperref[cap-status-atual]{6 - Status Atual}:} Considerações finais sobre o andamento do projeto, com destaque aos objetivos já cumpridos, os que ainda estão em andamento, ou que serão cumpridos na próxima etapa do TCC. Além disso, serão respondidos alguns questionamentos, mesmo que de forma parcial, bem como será conferido um parecer da autora sobre o projeto como um todo.
 \end{itemize}
