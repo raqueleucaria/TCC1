@@ -8,11 +8,14 @@ build:
 .PHONY: pdf
 pdf:
 	docker compose up
-	mv ./latex/TCC_PDF.pdf ./
-	docker compose run --rm latex latexmk -c
-	@echo "$(GREEN)PDF gerado com sucesso.$(END)"
-
-# --- NOVA REGRA PARA ASSISTIR AOS ARQUIVOS (HOT RELOAD) ---
+	@if [ -f ./latex/TCC_PDF.pdf ]; then \
+		mv ./latex/TCC_PDF.pdf ./; \
+		docker compose run --rm latex latexmk -c; \
+		echo "$(GREEN)PDF gerado com sucesso.$(END)"; \
+	else \
+		echo "Erro: O PDF não foi gerado pelo LaTeX."; \
+		exit 1; \
+	fi
 .PHONY: watch
 watch:
 	docker compose run --rm latex latexmk -pdf -shell-escape -view=none -pvc -jobname=TCC_PDF tcc.tex

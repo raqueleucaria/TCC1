@@ -1,31 +1,328 @@
-\begin{apendicesenv}
-
 % Os apêndices são materiais elaborados pelo autor que complementam sua argumentação,
 % mas que não são essenciais para a compreensão do texto principal.
 % Exemplos: demonstrações matemáticas extensas, códigos-fonte, especificações
 % detalhadas, documentação técnica, etc.
 
+\begin{apendicesenv}
+
 \partapendices
 
-\chapter{Primeiro Apêndice}
-\label{ap-primeiro}
-% Exemplo de figura em apêndice:
-% \begin{figure}[h]
-% \centering
-% \caption[Título curto para sumário]{Título completo da figura com detalhes.}
-% \includegraphics[keepaspectratio=true,scale=0.45]{figuras/nome_figura.eps}
-% \label{figura-nome}
-% \legend{Fonte: Autor.}
-% \end{figure}
+\chapter{Pesquisa Bibliográfica}
+\label{ap-pesquisa-bibliografica}
 
-\chapter{Segundo Apêndice}
-\label{ap-segundo}
-% Exemplo: Documentação técnica detalhada
-% Exemplo: Códigos-fonte extensos
-% Exemplo: Demonstrações matemáticas complexas
+Este apêndice detalha o levantamento bibliográfico realizado para fundamentar esta pesquisa.
+Para cada obra, apresenta-se uma análise crítica que abrange o
+contexto de aplicação, as contribuições metodológicas ou tecnológicas pertinentes
+a este trabalho, além das limitações ou restrições de escopo que caracterizam as
+lacunas a serem exploradas por esta monografia. A \autoref{tab:matriz-comparativa},
+ao final do apêndice, sintetiza as dimensões avaliadas em formato comparativo.
 
-% Adicione mais capítulos de apêndices conforme necessário
-% Lembre-se: apêndices são documentos elaborados pelo autor
-% que complementam o trabalho mas não são essenciais ao texto principal
+% ============================================================
+\section{SIGDENGUE}
+\label{ap:sigdengue-linha}
+% ============================================================
+
+Os dois artigos a seguir apresentam ligação direta e correspondem a uma linha de
+pesquisa iniciada em 2011 na Universidade Estadual do Oeste do Paraná (UNIOESTE),
+em parceria com a Prefeitura de Cascavel/PR. Estes representam os estudos mais
+alinhados aos objetivos desta pesquisa.
+
+% ============================================================
+\subsection{\textit{Computational Agents Applied to Dengue Fever Simulation} (2011)}
+\label{ap:rizzi2011}
+% ============================================================
+
+\citeonline{rizzi2011} apresentam o estágio de desenvolvimento de um
+sistema de monitoramento de dengue composto por três módulos, que visam:
+
+\begin{enumerate}[label=\Roman*.]
+    \item \textbf{Sistema de Informação:} Integrar dados e informações sobre
+    ocorrências de dengue de forma ordenada e centralizada, além de agregar
+    informações meteorológicas, densidade populacional e distribuição geográfica
+    no município;
+    \item \textbf{Georreferenciamento:} Fornecer ferramentas que facilitem a
+    realização de simulações da disseminação da dengue. Utiliza mapas no formato
+    \textit{ESRI Shapefile}, contendo três arquivos: desenho do mapa (.shp), índice
+    de referência para o arquivo .shp e atributos do mapa (.dbf);
+    \item \textbf{Simulação com Agentes:} Modelagem do ambiente e dos agentes
+    (mosquitos e humanos).
+\end{enumerate}
+
+O \textbf{Módulo~III} é o ponto de maior relevância do artigo, pois discorre sobre a
+simulação que emprega um modelo compartimental
+(\textbf{SEIR}\footnote{A população é dividida em quatro compartimentos:
+\textbf{S}uscetível (indivíduos saudáveis e expostos ao risco), \textbf{E}xposto
+(infectados, mas ainda não transmissores, no período de incubação), \textbf{I}nfeccioso
+(transmissores ativos da doença) e \textbf{R}ecuperado (imunes temporária ou
+permanentemente). O fluxo entre compartimentos é definido por taxas paramétricas.
+Para a dengue, a extensão habitual é o modelo SEIRS, que inclui perda de imunidade
+e retorno ao estado suscetível.}) sobre a população, buscando representar as
+conexões sociais reais dos indivíduos (casa, trabalho, estudo e lazer) e seus
+deslocamentos físicos.
+
+Os mosquitos possuem sensor visual para a percepção de corpos no ambiente, além
+de sensores de temperatura e odor para captar as condições que afetam sua
+capacidade de sobrevivência. Os agentes foram desenvolvidos seguindo a arquitetura
+\textbf{BDI} (\textit{Belief-Desire-Intention}) e os protocolos de mensagem oferecidos
+pelo \textbf{JADE}. Os autores afirmam
+que o baixo nível de cognição decorre da abrangência do problema, mas que os padrões
+de comunicação e relacionamento são considerados essenciais, com possibilidade de
+melhoria na modelagem. Esse aspecto constitui o principal gancho aproveitado neste
+trabalho.
+
+O primeiro módulo é explorado mais a fundo no artigo subsequente
+\cite{rizzi2016}, enquanto o segundo módulo não recebe o mesmo nível de
+aprofundamento.
+
+% ============================================================
+\subsection{SIGDENGUE: Um Sistema de Informação para o Acompanhamento e Gestão
+de Ações sobre Dengue com Enfoque às Atividades de Notificação, Raio e Bloqueio
+(2016)}
+\label{ap:rizzi2016}
+% ============================================================
+
+\citeonline{rizzi2016} descrevem o \textit{Sistema de Informação para
+Aquisição, Manipulação e Tratamento de Dados sobre a Dengue} (\textbf{SIGDENGUE}),
+desenvolvido para integrar as bases oficiais brasileiras de vigilância da dengue
+(SINAN, LIRAa e SISPNCD) em uma única plataforma municipal com suporte a
+georreferenciamento e tomada de decisão. O sistema visa facilitar o acesso à
+informação por meio de consultas, relatórios e visualização georreferenciada das
+ocorrências, consolidando dados que o município parceiro dispunha de forma
+fragmentada e os complementando com os registros dos sistemas nacionais. A
+arquitetura foi concebida de modo a ser adaptável a outros municípios.
+
+Lido em conjunto com seu antecessor \cite{rizzi2011}, o par de artigos
+oferece uma visão complementar da linha de pesquisa: enquanto o trabalho de 2011
+explora a simulação com agentes e expõe lacunas na profundidade da modelagem
+comportamental, o de 2016 amplia o escopo para o sistema de informação e oferece
+um panorama abrangente sobre os dados disponíveis na vigilância da dengue no Brasil.
+A revisão bibliográfica apresentada neste segundo artigo foi um recurso valioso para
+mapear as fontes de dados existentes e compreender como podem ser utilizadas como
+insumos para a simulação proposta neste trabalho.
+
+% ============================================================
+\section{Modelagem da Dengue}
+\label{ap:abm-mosquitos}
+% ============================================================
+
+Os artigos agrupados nesta seção destacam-se pelo enfoque na modelagem de
+arboviroses. A análise desses trabalhos é fundamental para a compreensão das regras
+biológicas e das dinâmicas de transmissão, pois apresentam diferentes abstrações e
+estratégias de simulação que servem de referência para a modelagem dos agentes deste
+simulador.
+
+\subsection{\textit{Exploring the Dynamics of Gene Drive Mosquitoes Within Wild
+Populations Using an Agent-Based Simulation} (2024)}
+\label{ap:wickramasooriya2024}
+
+\citeonline{wickramasooriya2024} propõem um modelo ABM geoespacial para simular
+a liberação de mosquitos geneticamente modificados (\textit{gene drive}) na ilha do
+Príncipe, África Ocidental, com o objetivo de controlar a malária transmitida pelo
+\textit{Anopheles coluzzii}. O modelo é organizado em três camadas:
+
+\begin{enumerate}[label=(\alph*)]
+    \item \textbf{Ciclo de vida:} transições de estado entre ovo, larva, pupa e adulto,
+    com probabilidades de sobrevivência ajustadas por dados laboratoriais obtidos do
+    laboratório de genética vetorial da Universidade da Califórnia, Davis;
+    \item \textbf{Movimentação e dispersão:} voo baseado em custo de resistência
+    calculado a partir da elevação do terreno e do tipo de uso do solo (dados GIS),
+    com alcance diário entre 170~m e 1.736~m. O custo mínimo de resistência é otimizado a cada deslocamento para reproduzir a preferência
+    ecológica do mosquito por regiões de baixa altitude e determinados tipos de
+    cobertura;
+    \item \textbf{Acasalamento e oviposição:} comunicação por troca de mensagens
+    entre agentes para seleção de parceiros e transmissão de genótipo. A fêmea
+    enfileira pedidos de machos disponíveis em seu raio de 50~m e seleciona
+    aleatoriamente, transitando para os estados de busca de sangue e oviposição
+    na sequência.
+\end{enumerate}
+
+Os diagramas de estado para fêmeas e machos são formalmente especificados,
+e o trabalho relata testes unitários, de integração e de sistema como práticas
+explícitas de engenharia de \textit{software}. A separação em três camadas
+especializadas com diagramas de estado formais e o algoritmo de movimentação
+baseado em resistência geoespacial são diretamente adaptáveis ao
+\textit{Aedes aegypti}. A estratégia de testes em três níveis também serve como
+uma excelente referência de verificação para este projeto. Entretanto, os próprios autores apontam a ausência de variáveis climáticas
+(temperatura, chuva, umidade) no modelo de sobrevivência, fator crítico para o
+\textit{Aedes aegypti}.
+
+% ============================================================
+\subsection{\textit{Agent-Based Modeling and Simulation for Transmission Dynamics
+and Surveillance of Dengue: Conceptual and Design Model} (2023)}
+\label{ap:pascoe2023}
+% ============================================================
+
+\citeonline{pascoe2023} apresentam um modelo conceitual e de \textit{design}
+para a vigilância da dengue na região de Dar es Salaam (Tanzânia), utilizando a
+plataforma MARS (\textit{Multi-Agent Research and Simulation}). O modelo segue o
+protocolo ODD (\textit{Overview, Design Concepts, and Details}), padrão da
+comunidade de modelagem baseada em agentes para garantir a reprodutibilidade.
+
+Os agentes são a fêmea do \textit{Aedes aegypti} e o humano. O ambiente é
+representado por camadas GIS em formato \textit{raster} cobrindo temperatura,
+precipitação e umidade. A movimentação dos mosquitos segue o
+\textit{Movement Ecology Paradigm} (MEP); a dos humanos incorpora planos diários
+(residência, escola, trabalho e lazer). O modelo SEIR é adotado para a progressão
+da doença no agente humano, com parâmetros extraídos da literatura (período de
+incubação de 4 a 10 dias, taxa de picada do mosquito de 0,26 a 0,67/dia, vida útil
+do mosquito de 30 dias).
+
+A parametrização explícita de todas as variáveis de estado dos agentes, as
+modalidades de movimentação e a aplicação rigorosa do protocolo ODD são referências
+diretas para a especificação dos agentes deste simulador. Contudo, o trabalho
+permanece no nível de projeto. Não há código implementado, resultados de simulação
+ou validação com dados empíricos reais.
+
+% ============================================================
+% TODO: Revisar o artigo
+\subsection{\textit{Mixed-mode pandemic modeling} (2019)}
+\label{ap:bosch2019}
+
+\citeonline{bosch2019} descrevem uma arquitetura de simulação híbrida para
+pandemias globais que combina três paradigmas: Dinâmica de Sistemas (SD), Simulação
+de Eventos Discretos (DES) e Modelagem Baseada em Agentes (ABM). Cada célula de
+30~km² da superfície terrestre contém um modelo SD para a progressão da doença;
+um motor DES coordena a evolução temporal e os eventos de viagem aérea; e agentes
+ABM representam governos e equipes de resposta, tomando decisões sobre vacinação,
+quarentena e alocação de recursos. Alguns pontos relevantes podem ser destacados, como:
+
+\begin{enumerate}
+    \item \textbf{Distinção formal entre endemia e epidemia:} o modelo define estados
+    endêmicos como aqueles em que a taxa de incidência ocorre de forma estável e
+    esperada, e estados epidêmicos como aqueles em que essa taxa supera o limite do
+    esperado. Essa distinção fundamenta a definição de surto adotada neste simulador
+    e os critérios de disparo de alertas para os gestores de saúde pública;
+    \item \textbf{Argumento contra modelos puramente compartimentais:} o trabalho
+    demonstra que os modelos SD e SIR/SEIR, por operarem com populações médias e
+    homogêneas, são insuficientes para capturar as decisões individuais de agentes
+    autônomos (governos, equipes de campo). Esse argumento reforça diretamente a
+    escolha pelo paradigma ABM nesta pesquisa.
+\end{enumerate}
+
+A limitação identificada é que o modelo é declarado como uma prova de conceito sem
+validação com dados reais. Além disso, a granularidade espacial de 30~km² é
+inadequada para simulações intraurbanas, onde criadouros e focos de dengue exigem
+uma resolução na escala de dezenas de metros.
+
+% ============================================================
+\section{Dados Epidemiológicos e Ciência de Dados}
+\label{ap:dados}
+% ============================================================
+
+Esta seção agrupa estudos que aplicam técnicas de Ciência de Dados e mineração
+estatística ao tratamento de bases epidemiológicas. A análise desses trabalhos
+orienta a seleção, normalização e validação dos dados reais utilizados como
+insumos do simulador, garantindo uma parametrização baseada em evidências.
+
+% ============================================================
+% TODO: Revisar o artigo
+\subsection{\textit{Risk Factor Identification and Spatiotemporal Diffusion Path
+During the Dengue Outbreak} (2016)}
+\label{ap:li2016}
+% ============================================================
+
+\citeonline{li2016} analisam a epidemia de dengue ocorrida no Distrito de Xiangqiao
+(Chaozhou, China) em 2015, utilizando uma abordagem de mineração de dados
+espaço-temporais em nível microscópico (resolução temporal diária). O trabalho foca
+na extração de conhecimento a partir de grandes volumes de dados para identificar
+variáveis críticas. A metodologia combina:
+
+\begin{enumerate}
+    \item \textbf{Análise Estatística de Ciclo:} Ajuste de curvas por mínimos
+    quadrados para definir o ciclo de vida epidemiológico em quatro fases
+    (\textit{initial}, \textit{beginning}, \textit{outbreak} e \textit{extinction});
+    \item \textbf{Autocorrelação Espacial:} Uso do índice de Moran para quantificar
+    a dependência espacial dos casos, validando a necessidade de representação
+    geográfica;
+    \item \textbf{Correlação de Fatores:} Aplicação da correlação de Spearman para
+    medir a associação entre a incidência de dengue e fatores de risco (população,
+    temperatura, umidade, vento e Índice de Breteau);
+    \item \textbf{Geoprocessamento:} Mapeamento de densidade de Kernel para
+    identificar \textit{hotspots} e trajetórias de difusão.
+\end{enumerate}
+
+Os resultados derivados da análise de dados indicam que o Índice de Breteau (IB) e
+a densidade populacional são os fatores de risco dominantes durante o surto ativo.
+Notavelmente, as variáveis meteorológicas diárias apresentaram correlação fraca no
+curto prazo, resultado contraintuitivo que orienta a priorização de variáveis de
+entrada no simulador. Além disso, o Índice de Moran superior a 0,52 confirma uma
+forte autocorrelação espacial, fornecendo evidências de que a vizinhança geográfica
+deve ser tratada como uma variável de estado explícita no SMA.
+
+% ============================================================
+\subsection{\textit{Data Science Approaches for Building Dengue Epidemiological
+Datasets} (2025)}
+\label{ap:moreira2025}
+% ============================================================
+
+\citeonline{moreira2025} constroem e disponibilizam \textit{datasets}
+normalizados de dengue para três cidades brasileiras (São José dos Campos,
+Ouro Preto e Resende), no período de 2014 a 2024, a partir de dados
+do SINAN e do InfoDengue. Os \textit{datasets} normalizados estão disponíveis
+publicamente no repositório Zenodo em formato CSV, acessíveis para uso direto
+como dados de validação.
+
+Para o SINAN, são propostas três relações normalizadas cobrindo casos
+autóctones\footnote{Os casos autóctones referem-se a indivíduos que contraem a
+doença em seu local de residência, sem histórico de viagens para áreas com
+transmissão conhecida. Esta métrica serve como um indicador fundamental para
+monitorar a propagação local da doença.}, hospitalizações e desfechos clínicos.
+Na normalização das bases para o InfoDengue, a relação construída foi:
+$$R_1 = \{\text{epi\_weeks}, \text{cases}, \text{avg\_temp}, \text{avg\_humid}\}$$
+
+A Função de Correlação Cruzada (CCF) entre temperatura e incidência apresentada
+revela um \textbf{defasamento de aproximadamente 12 semanas} (três meses) entre o
+pico de temperatura e o pico de casos, dado de suma importância para a
+parametrização dos agentes mosquitos neste simulador. Além disso, foi confirmada a
+ocorrência de ciclos endêmicos a cada 4 a 5 anos, evidenciando um padrão que deve
+ser reprodutível pelo simulador como critério de validação temporal. Cabe destacar
+que a ausência de dados pluviométricos (chuva) no InfoDengue é apontada pelos
+próprios autores como uma lacuna relevante.
+
+% ============================================================
+\section{Matriz Comparativa}
+\label{ap:matriz}
+% ============================================================
+% TODO: Revisar tabela
+
+A \autoref{tab:matriz-comparativa} consolida a análise dos trabalhos abordados em
+seis dimensões consideradas para os objetivos deste TCC. A marcação ``X''
+indica que a dimensão está contemplada no trabalho (seja de forma total ou parcial),
+enquanto os espaços em branco indicam a ausência da característica.
+
+\begin{table}[htb]
+    \centering
+    \caption{Matriz comparativa dos trabalhos relacionados.}
+    \label{tab:matriz-comparativa}
+    \vspace{0.2cm}
+    \begin{tabular}{|p{4.cm}|c|c|c|c|c|c|c|}
+        \hline
+        \multirow{2}{4.5cm}{\textbf{Dimensões Analisadas}} &
+        \multicolumn{7}{c|}{\textbf{Trabalhos Relacionados (Seções)}} \\
+        \cline{2-8}
+        & \textbf{A.1.1} & \textbf{A.1.2} & \textbf{A.2.1} & \textbf{A.2.2} &
+        \textbf{A.2.3} & \textbf{A.2.4} & \textbf{A.3.1} \\
+        \hline
+        Modelagem Baseada em Agentes (ABM) & X &   & X & X & X &   &   \\
+        \hline
+        Integração com Dados Abertos       & X & X &   &   &   &   & X \\
+        \hline
+        Uso de Variáveis Climáticas        & X &   &   & X &   & X & X \\
+        \hline
+        Georreferenciamento (GIS)          & X & X & X & X & X & X &   \\
+        \hline
+        Validação com Dados Reais          &   & X &   &   &   & X &   \\
+        \hline
+        Foco no Contexto Brasileiro        & X & X &   &   &   &   & X \\
+        \hline
+    \end{tabular}
+    \par\vspace{1ex}
+    {\footnotesize \textbf{Fonte:} Autor.}
+\end{table}
+
+A matriz evidencia que nenhum dos trabalhos isolados identificados cobre as seis
+dimensões simultaneamente. A proposta desta pesquisa busca
+integrá-las de forma conjunta, o que justifica a sua contribuição
+científica para o estado da arte.
 
 \end{apendicesenv}
