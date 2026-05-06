@@ -24,7 +24,7 @@ Para tanto, faz-se necessário um paradigma de modelagem e programação capaz d
 mais proximamente as nuances desse domínio. O Paradigma de Sistemas Multiagentes é o modelo
 conceitual sugerido nesse trabalho, por conter abstrações mais aderentes ao propósito supracitado,
 com base em pesquisas prévias realizadas pela autora \cite{costa2025}.
-Dentre essas abstrações, têm-se os agentes de software, que são entidades autônomas,
+Dentre essas abstrações, têm-se os agentes de \textit{software}, que são entidades autônomas,
 proativas, reativas e sensíveis ao contexto \cite{wooldridge2009}.
 
 Este capítulo apresenta o cenário no qual este trabalho está inserido. Inicia-se
@@ -43,7 +43,7 @@ detalhados os  \hyperref[1-objetivos]{Objetivos} a serem alcançados e a
 A dengue é uma infecção viral, pertencente ao grupo dos arbovírus, transmitida pela picada 
 do mosquito infectado \textit{Aedes aegypti}, mais comum em regiões de clima tropical e subtropical como o Brasil \cite{ministerio2026}.
 Em 2025, o país registrou 1.655.644 casos suspeitos, 1.793 óbitos e taxa de incidência de
-775,7 por 100.000 habitantes, o maior volume absoluto de casos nas Américas \cite{opas2026}.
+775,7 por 100.000 habitantes, o maior volume absoluto de casos nas Américas \citeprimeiro{opas2026}.
 
 % 2. O Cenário Epidemiológico Crítico no Brasil - gravidade
 Além do volume de casos, o Brasil enfrenta a circulação simultânea dos quatro
@@ -59,7 +59,7 @@ de mosquitos, medidas reativas têm pouco efeito: a queda nos casos tende a ocor
 imunidade de grupo, não pelas intervenções aplicadas \cite{ministerio2026}.
 Isso reforça a necessidade de ferramentas capazes de apoiar decisões antes da instauração
 de uma epidemia, conforme incentivado pela Organização Pan-Americana da Saúde
-\cite{opas2026}.
+(OPAS/OMS, \citeyear{opas2026}).
 
 % 4. A Solução Tecnológica: A Essência e Importância dos Sistemas Multiagentes
 Nesse contexto, a simulação por Sistemas Multiagentes (SMA) é uma abordagem
@@ -68,17 +68,17 @@ autônomos que interagem entre si e com o ambiente, que incorpora fatores como
 criadouros, temperatura, precipitação e umidade em camadas geoespaciais. Isso permite
 reproduzir como comportamentos individuais e locais geram padrões complexos de disseminação
 em escala maior. O ambiente simulado funciona como um laboratório virtual
-para análises do tipo what-if, permitindo avaliar o impacto de diferentes cenários antes
+para análises do tipo \textit{what-if}, permitindo avaliar o impacto de diferentes cenários antes
 de aplicá-los na prática \cite{pascoe2023}.
 
 
 % 5.Desafio da Integração de Dados Reais
 
 Para que essas simulações sejam realistas, os agentes precisam ser alimentados com
-dados reais. O Brasil dispõe de bases abertas para isso: o Sistema de Informação de Agravos
+dados reais. Segundo \citeonline{rizzi2016}, o Brasil dispõe de bases abertas para isso: o Sistema de Informação de Agravos
 de Notificação (SINAN), o Levantamento Rápido do Índice de Infestação por Aedes
 aegypti (LIRAa) e o Sistema do Programa Nacional de Controle da Dengue (SISPNCD).
-O problema é que essas fontes operam de forma isolada e são historicamente subutilizadas
+Entretanto, essas fontes operam de forma isolada e são historicamente subutilizadas
 na gestão \cite{rizzi2016}. Além da dispersão, falta padronização: não há um modelo
 de dados consolidado que integre essas bases com variáveis climáticas e georreferenciadas
 de forma que possam alimentar diretamente uma simulação \cite{moreira2025}.
@@ -96,7 +96,7 @@ especificações formais. Isso dificulta tanto a reprodução; quanto a extensã
 
 Este trabalho retoma esse ponto, buscando contribuir no que ficou em
 aberto. Propõe-se, portanto, um sistema de informação georreferenciado com simulação de
-agentes de software, no contexto da dengue, que: (i) acorda uma visão preliminar de um modelo de dados
+agentes de \textit{software}, no contexto da dengue, que: (i) acorda uma visão preliminar de um modelo de dados
 para integrar as bases abertas brasileiras, tendo como referência a abordagem de normalização 
 proposta por \cite{moreira2025}; (ii) especifica o comportamento dos agentes com
 diagramas e modelos; e (iii) estabelece critérios de validação espacial e temporal, tendo
@@ -141,18 +141,19 @@ entorno e age com base em suas próprias regras \cite{wooldridge2009}, o que é 
 compatível com a dinâmica da dengue: mosquitos se deslocam, humanos circulam,
 criadouros se formam e condições climáticas variam de forma local e contínua.
 
-O modelo clássico como o SIR (Susceptible-Infected-Recovered) trata
-a população como um conjunto uniforme, descrito por equações que calculam médias. Essa
-abstração não é suficiente para representar o deslocamento individual dos mosquitos, as
-variações climáticas locais ou as diferenças de comportamento entre pessoas \cite{bosch2019}.
-A modelagem baseada em agentes (MBA), por sua vez, representa cada entidade de forma explícita,
-permitindo que padrões emergentes como surtos e focos apareçam como
-resultado das interações. % TODO: Add referencia a esta ultima frase
+\citeonline{pascoe2023} demonstram essa aderência dos SMAs ao simular a dinâmica de
+transmissão e vigilância da dengue, evidenciando que a Modelagem Baseada em Agentes
+(MBA) oferece vantagens frente a outras metodologias, como modelos estatísticos, de
+rede, compartimentais e abordagens de aprendizado de máquina. Ao modelar
+explicitamente agentes individuais e suas interações em um contexto espacial e social,
+a MBA permitiu a exploração de comportamentos complexos, a avaliação de intervenções
+e a análise de cenários variados, consolidando-se como ferramenta relevante para o
+processo de tomada de decisão no contexto da dengue.
 
-Existem várias propostas de modelagem de agentes de software, bem como suportes tecnológicos
+Existem várias propostas de modelagem de agentes de \textit{software}, bem como suportes tecnológicos
 que se orientam por essas modelagens conceituais visando a implementação dos agentes.
 Dentre as mais conhecidas, destacam-se as acordadas em \cite{alhadef2024}. Nesse caso, o autor
-descreve várias ferramentas de software para construção de Sistemas Multiagentes, em uma
+descreve várias ferramentas de \textit{software} para construção de Sistemas Multiagentes, em uma
 Revisão Sistemática da Literatura. O autor destaca ainda a popularidade de uma ferramenta
 em particular, chamada JADE (\textit{Java Agent Development Framework}) \cite[p.~20]{alhadef2024}.
 Por fim, cabe ressaltar as vantagens apontadas pelo autor, ao comparar o JADE e outras
@@ -181,7 +182,7 @@ Conforme colocado anteriormente, ambos os artigos do SIGDENGUE são próximos de
 \cite{rizzi2011, rizzi2016}. Todavia, deixam lacunas. Em \citeonline{rizzi2011},
 reconhecem que a modelagem dos agentes ficou superficial e não registram diagramas de estado
 nem especificações mais claras, com modelagem em notações reconhecidas da área
-(ex. UML -  \textit{Unified Modeling Language}) (REF). % Adicionar referência
+(ex. UML -  \textit{Unified Modeling Language}) \cite{fakhroutdinov2026}.
 Isso ajudaria a compreender as interações dos agentes, sendo possível implementá-las mais facilmente.
 Em \citeonline{rizzi2016}, avançam no sistema de informação, mas não detalham como os dados foram estruturados.
 Adicionalmente, as decisões de modelagem ainda assim ficaram implícitas.
@@ -264,7 +265,7 @@ e possibilidades de integração, como subsídio para a escolha do cenário
 geográfico de aplicação, e
         \item \textbf{Identificação}, a partir da revisão da literatura, das variáveis biológicas e ambientais
 que atuam na proliferação do \textit{Aedes aegypti}, bem como dos critérios de avaliação utilizados nas
-análises de modelos epidemiológicos.
+análises de modelos epidemiológicos. E ainda, a partir disso, estabelecer os possíveis pontos de forças, oportunidades, fraquezas e ameaças da solução proposta.
     \end{enumerate}
 
     \item \textbf{Objetivos Específicos de viés Prático:}
@@ -273,7 +274,7 @@ análises de modelos epidemiológicos.
 tornando-as insumos diretos da simulação;
         \item \textbf{Especificação} dos comportamentos dos agentes, representando mosquitos, humanos e criadouros, em notação UML;
         \item \textbf{Implementação} de provas de conceito, em atendimento ao sistema como um todo e de forma modularizada, com atenção aos módulos: integração de dados, georreferenciamento e simulação com agentes, e
-        \item \textbf{Análise} dos resultados de forma quantitativa e qualitativa, incluindo critérios de avaliação espacial (ex. autocorrelação geográfica) e temporal (ex. aderência a ciclos históricos).
+        \item \textbf{Análise} dos resultados de forma quantitativa e qualitativa.
     \end{itemize}
 
     \item \textbf{Objetivos Específicos de viés Documental:}
@@ -298,7 +299,7 @@ do Scrum Solo (??) e Kanban (??). % TODO: add ref
 
 Já a análise, orienta-se pelo protocolo de pesquisa-ação, em conjunto com avaliações quanti e qualitativa.
 Em termos de análise quantitativa, pretende-se perceber sobre a aderência da simulação às séries históricas
-reais, comparando dados numéricos da versão in silico com dados reais. Além disso, serão aferidas métricas
+reais, comparando dados numéricos da versão \textit{in silico} com dados reais. Além disso, serão aferidas métricas
 de desempenho computacional da solução simulada. Em termos de análise qualitativa, será entregue uma
 Matriz de SWOT (??), contendo: Forças, Fraquezas, Oportunidades e Ameaças da solução. % TODO: add ref
 Os detalhes completos são apresentados no Capítulo \hyperref[1-metodologia]{4 - Metodologia}. 
